@@ -1,0 +1,25 @@
+---
+vault::secret::namevar:
+  path: test
+  file: namevar
+  user: user
+  group: group
+  perms: '0644'
+  data: 'secret'
+vault::secret::namevar.crt:
+  path: test
+  file: namevar.crt
+  user: user
+  group: group
+  perms: '0644'
+  data: 'secret'
+vault::secret::namevar.key:
+  path: test
+  file: namevar.key
+  user: user
+  group: group
+  perms: '0644'
+  data: 'secret'
+vault::secret::secret:
+  a: a
+  b: b

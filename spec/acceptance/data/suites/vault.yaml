@@ -1,0 +1,24 @@
+---
+vault::secret::test1:
+  token: 'secrettoken'
+vault::secret::test2:
+  path: test
+  file: test1
+  user: kitchen
+  group: kitchen
+  perms: '0644'
+  data: 'secretfile'
+vault::secret::test3.crt:
+  path: ssl
+  file: test2.crt
+  user: kitchen
+  group: kitchen
+  perms: '0644'
+  data: 'secretcert'
+vault::secret::test3.key:
+  path: ssl
+  file: test2.key
+  user: kitchen
+  group: kitchen
+  perms: '0400'
+  data: 'secretkey'

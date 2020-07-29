@@ -1,0 +1,5 @@
+---
+vault::secrets:
+  - test2
+vault::ssl:
+  - test3

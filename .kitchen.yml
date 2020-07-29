@@ -1,0 +1,49 @@
+---
+driver:
+  name: docker
+provisioner:
+  name: puppet_apply
+  manifests_path: spec/acceptance
+  manifest: site.pp
+  modules_path: manifests
+  hiera_config_path: spec/acceptance/hiera.yaml
+  hiera_data_path: spec/acceptance/data
+  hiera_deep_merge: true
+  ignore_spec_fixtures: true
+  puppet_verbose: true
+  puppet_debug: false
+  require_puppet_repo: false
+  require_puppet_collections: false
+  require_chef_for_busser: false
+  require_chef_omnibus: false
+  puppet_detailed_exitcodes: true
+  puppet_whitelist_exit_code: 2
+  retry_on_exit_code:
+  - 0
+  - 4
+  - 6
+  max_retries: 2
+platforms:
+- name: debian-docker
+  driver_config:
+    image:  kozl/puppet:6.15.0
+    platform: debian
+    use_cache: true
+    privileged: true
+    provision_command:
+      - apt-get update
+    run_options: "-v /sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_command: "/lib/systemd/systemd"
+- name: debian-vagrant
+  driver_plugin: vagrant
+  driver_config:
+    box: debian/stretch64
+verifier:
+  name: inspec
+suites:
+- name: vault
+  provisioner:
+    custom_facts:
+      suite: vault
+    manifest: vault.pp
+  includes: debian-docker
