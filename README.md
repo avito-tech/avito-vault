@@ -190,5 +190,5 @@ bundle exec kitchen test -t spec/acceptance
 # Сгенерировать документацию по модулю
 
 ```
-bundle exec rake strings:refernce
+bundle exec rake strings:reference
 ```
